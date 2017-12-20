@@ -14,7 +14,7 @@ interface ApiService {
         val BASE_URL = "http://gank.io/api/data/"
     }
 
-    @GET("福利/size/page")
+    @GET("福利/{size}/{page}")
     fun getMeiZhiData(@Path("size") size: Int, @Path("page") page: Int): Observable<MeiZhiData>
 
 }

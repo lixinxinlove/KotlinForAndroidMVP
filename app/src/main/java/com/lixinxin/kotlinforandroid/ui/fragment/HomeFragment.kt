@@ -51,7 +51,13 @@ class HomeFragment : BaseFragment(), HomeContract.View {
     }
 
     override fun setData(users: MutableList<MeiZhiEntity>) {
+
+        for (user in users) {
+            Logger.e("llll", user.url!!)
+        }
+
     }
+
 
     override fun onDestroy() {
         presenter = null

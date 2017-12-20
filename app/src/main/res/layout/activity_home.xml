@@ -18,17 +18,19 @@
         android:background="#cccccc" />
 
     <RadioGroup
-        android:gravity="center"
         android:id="@+id/rg"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <RadioButton
+
             android:id="@+id/rb1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/ripple_rb_bg"
             android:button="@null"
             android:drawableTop="@drawable/home_bg_selected"
             android:gravity="center"
