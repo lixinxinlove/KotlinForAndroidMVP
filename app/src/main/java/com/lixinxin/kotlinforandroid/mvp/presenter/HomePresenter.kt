@@ -31,6 +31,7 @@ class HomePresenter(context: Context, view: HomeContract.View) : HomeContract.Pr
         requestData()
     }
 
+
     override fun end() {
     }
 
