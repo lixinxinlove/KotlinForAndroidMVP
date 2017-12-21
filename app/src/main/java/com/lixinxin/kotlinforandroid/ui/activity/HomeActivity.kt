@@ -45,10 +45,8 @@ class HomeActivity : AppCompatActivity() {
                         val i = random.nextInt(14)
                         var sp: SharedPreferences = getSharedPreferences("lee", Context.MODE_PRIVATE)
                         sp.edit().putInt("key", i).commit()
-                        recreate()
+                        // recreate() 重新启动 当前Activity
                     }, 5000)
-
-
                 }
                 R.id.rb2 -> {
                     supportFragmentManager.beginTransaction()
@@ -117,8 +115,6 @@ class HomeActivity : AppCompatActivity() {
                 .hide(hotFragment)
                 .hide(myFragment)
                 .commit()
-
-
     }
 
     fun colorSelection(i: Int) {
