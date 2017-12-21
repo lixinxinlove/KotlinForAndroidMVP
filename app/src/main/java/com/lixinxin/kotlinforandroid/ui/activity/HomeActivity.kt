@@ -1,5 +1,7 @@
 package com.lixinxin.kotlinforandroid.ui.activity
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -9,6 +11,7 @@ import com.lixinxin.kotlinforandroid.ui.fragment.HomeFragment
 import com.lixinxin.kotlinforandroid.ui.fragment.HotFragment
 import com.lixinxin.kotlinforandroid.ui.fragment.MyFragment
 import kotlinx.android.synthetic.main.activity_home.*
+import java.util.*
 
 class HomeActivity : AppCompatActivity() {
     var homeFragment: HomeFragment? = null
@@ -18,6 +21,12 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        var sp: SharedPreferences = getSharedPreferences("lee", Context.MODE_PRIVATE)
+        val i = sp.getInt("key", 0)
+        colorSelection(i)
+
+
         setContentView(R.layout.activity_home)
         initFragment(savedInstanceState)
 
@@ -30,6 +39,16 @@ class HomeActivity : AppCompatActivity() {
                             .hide(findFragment)
                             .hide(hotFragment)
                             .commit()
+
+                    rb1.postDelayed({
+                        var random = Random()
+                        val i = random.nextInt(14)
+                        var sp: SharedPreferences = getSharedPreferences("lee", Context.MODE_PRIVATE)
+                        sp.edit().putInt("key", i).commit()
+                        recreate()
+                    }, 5000)
+
+
                 }
                 R.id.rb2 -> {
                     supportFragmentManager.beginTransaction()
@@ -98,5 +117,27 @@ class HomeActivity : AppCompatActivity() {
                 .hide(hotFragment)
                 .hide(myFragment)
                 .commit()
+
+
+    }
+
+    fun colorSelection(i: Int) {
+        when (i) {
+            0 -> setTheme(R.style.BlueTheme)
+            1 -> setTheme(R.style.RedTheme)
+            2 -> setTheme(R.style.BrownTheme)
+            3 -> setTheme(R.style.GreenTheme)
+            4 -> setTheme(R.style.PurpleTheme)
+            5 -> setTheme(R.style.TealTheme)
+            6 -> setTheme(R.style.PinkTheme)
+            7 -> setTheme(R.style.DeepPurpleTheme)
+            8 -> setTheme(R.style.OrangeTheme)
+            9 -> setTheme(R.style.LightGreenTheme)
+            10 -> setTheme(R.style.DeepOrangeTheme)
+            11 -> setTheme(R.style.IndigoTheme)
+            12 -> setTheme(R.style.LimeTheme)
+            13 -> setTheme(R.style.BlueGreyTheme)
+            14 -> setTheme(R.style.CyanTheme)
+        }
     }
 }

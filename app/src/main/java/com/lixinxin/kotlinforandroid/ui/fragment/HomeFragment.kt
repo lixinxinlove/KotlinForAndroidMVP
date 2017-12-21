@@ -1,6 +1,13 @@
 package com.lixinxin.kotlinforandroid.ui.fragment
 
+import android.animation.Animator
+import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.support.annotation.ColorInt
+import android.support.annotation.NonNull
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ProgressBar
 import com.lixinxin.kotlinforandroid.R
 import com.lixinxin.kotlinforandroid.base.BaseFragment
@@ -59,9 +66,13 @@ class HomeFragment : BaseFragment(), HomeContract.View {
     }
 
 
+
+
     override fun onDestroy() {
         presenter?.end()
         //presenter = null
         super.onDestroy()
     }
 }
+
+
