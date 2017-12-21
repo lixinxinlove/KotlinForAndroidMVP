@@ -36,6 +36,7 @@ class HomeFragment : BaseFragment(), HomeContract.View {
 
     override fun onHiddenChanged(hidden: Boolean) {
         if (hidden) {
+            presenter?.end()
             Logger.e("HomeFragment", "不可见")
         } else {
             Logger.e("HomeFragment", "可见")
@@ -55,12 +56,12 @@ class HomeFragment : BaseFragment(), HomeContract.View {
         for (user in users) {
             Logger.e("llll", user.url!!)
         }
-
     }
 
 
     override fun onDestroy() {
-        presenter = null
+        presenter?.end()
+        //presenter = null
         super.onDestroy()
     }
 }

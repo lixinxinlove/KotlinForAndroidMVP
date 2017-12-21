@@ -6,6 +6,7 @@ import com.lixinxin.kotlinforandroid.mvp.contract.HomeContract
 import com.lixinxin.kotlinforandroid.mvp.model.HomeModel
 import com.lixinxin.kotlinforandroid.mvp.model.entity.MeiZhiEntity
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 /**
@@ -32,15 +33,26 @@ class HomePresenter(context: Context, view: HomeContract.View) : HomeContract.Pr
     }
 
     override fun end() {
+        if (s != null) {
+            if (!s!!.isDisposed) {
+                s!!.dispose()
+            }
+        }
     }
 
+    var s: Disposable? = null
+
     override fun requestData() {
-        mModel.loadData(this!!.mContext!!)?.subscribeOn(Schedulers.io())?.observeOn(AndroidSchedulers.mainThread())?.subscribe { x ->
+
+        s = mModel.loadData(this!!.mContext!!)?.subscribeOn(Schedulers.io())?.observeOn(AndroidSchedulers.mainThread())?.subscribe { x ->
             if (!x.isError) {
                 val meizhis: MutableList<MeiZhiEntity> = x.results as MutableList<MeiZhiEntity>
                 mView?.setData(meizhis)
             }
-        }
-        Handler().postDelayed({ mView?.hideProgress() }, 3000)
+        } as Disposable
+
+        Handler().postDelayed({
+            mView?.hideProgress()
+        }, 3000)
     }
 }
